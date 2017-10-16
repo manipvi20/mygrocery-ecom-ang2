@@ -1,0 +1,43 @@
+.register-container {
+    padding: 6em 0;
+}
+.register-panel {
+    width: 35%;
+    box-shadow: 0px 0px 15px 0px #D6D6D6;
+    margin: 0 auto;
+}
+.register-form {
+    padding: 2em;
+}
+.register-form h3 {
+    font-size: 2.5em;
+    margin-bottom: 1.5em;
+}
+.register-form input {
+    border: none;
+    margin-left: 20px;
+}
+.register-form input:focus {
+    outline: none;
+}
+.form_grp {
+    background: #fff;
+    border: 1px solid #999;
+    margin-bottom: 2em;
+    padding: 0.5em;
+}
+.login a {
+    color: #555;
+}
+
+@media screen and (max-width: 640px) {
+    .register-panel {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 641px) and (max-width: 1024px) {
+    .register-panel {
+        width: 50%;
+    }
+}

@@ -1,0 +1,174 @@
+<div class="banner">
+        <img src="../../assets/img/banner.jpg" class="img-responsive" alt="Banner"/>
+</div>
+<div class="content-wrapper">
+    <div class="container">
+        <div class="special-offers">
+            <div class="special-offer_head text-center">
+                <h1 class="spec-off_h">Special Offers</h1>
+                <div class="spec-off-tabs">
+                        <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#snacks">Snacks</a></li>
+                                <li><a data-toggle="tab" href="#fruitsProd">Fruits & Vegitables</a></li>
+                                <li><a data-toggle="tab" href="#kitchenProd">Breakfasts</a></li>
+                                <li><a data-toggle="tab" href="#otherProd">Others</a></li>
+                        </ul>
+                            
+                        <div class="tab-content">
+                        <div id="snacks" class="tab-pane fade in active">
+                            <div class="row offer-prod" *ngIf="snacksProd.length > 0">
+                                <div class="col-md-3" *ngFor="let product of snacksProd">
+                                    <div class="col-spec">
+                                        <a [routerLink]="['spp', product._id]" class="offer-img">
+                                                    <img src="../../assets/img/product_imgs/p{{product.prod_id}}.png" class="img-responsive" alt="">
+                                                    <div class="offer" *ngIf="product.special_offer == true"><span>Offer</span></div>
+                                        </a>
+                                        <div class="product-details">
+                                            <div class="product-name">
+                                                        <h6>{{product.name}} (500 g)</h6>
+                                                </div>
+                                                <div class="price">
+                                                    <p><em class="item_price">{{(product.discount > 0 ? product.discount : product.price) | currency:'INR': true}}</em></p>
+                                                </div>
+                                                    <div class="add">
+                                                <button (click)="addtocart(product)" class="btn my-cart-btn">Add to Cart</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row offer-prod" *ngIf="snacksProd.length == 0">
+                                <div class="no-offer-prod col-md-12">
+                                        <h4>Sorry!! No Offer products are available in this catagory</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="fruitsProd" class="tab-pane fade">
+                            <div class="row offer-prod" *ngIf="fruitsProd.length > 0">
+                                <div class="col-md-3" *ngFor="let product of fruitsProd">
+                                    <div class="col-spec">
+                                        <a [routerLink]="['spp', product._id]" class="offer-img">
+                                                    <img src="../../assets/img/product_imgs/p{{product.prod_id}}.png" class="img-responsive" alt="">
+                                                    <div class="offer" *ngIf="product.special_offer == true"><span>Offer</span></div>
+                                        </a>
+                                        <div class="product-details">
+                                            <div class="product-name">
+                                                        <h6>{{product.name}} (500 g)</h6>
+                                                </div>
+                                                <div class="price">
+                                                    <p><em class="item_price">{{(product.discount > 0 ? product.discount : product.price) | currency:'INR': true}}</em></p>
+                                                </div>
+                                                    <div class="add">
+                                                <button class="btn my-cart-btn" (click)="addtocart(product)">Add to Cart</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row offer-prod" *ngIf="fruitsProd.length == 0">
+                                    <div class="no-offer-prod col-md-12">  
+                                            <h4>Sorry!! No Offer products are available in this catagory</h4>
+                                    </div>
+                            </div>
+                        </div>
+                    <div id="kitchenProd" class="tab-pane fade">
+                        <div class="row offer-prod" *ngIf="kitchenProd.length > 0">
+                            <div class="col-md-3" *ngFor="let product of kitchenProd">
+                                <div class="col-spec">
+                                    <a [routerLink]="['spp', product._id]" class="offer-img">
+                                                <img src="../../assets/img/product_imgs/p{{product.prod_id}}.png" class="img-responsive" alt="">
+                                                <div class="offer" *ngIf="product.special_offer == true"><span>Offer</span></div>
+                                    </a>
+                                    <div class="product-details">
+                                        <div class="product-name">
+                                                    <h6>{{product.name}} (500 g)</h6>
+                                            </div>
+                                            <div class="price">
+                                                <p><em class="item_price">{{(product.discount > 0 ? product.discount : product.price) | currency:'INR': true}}</em></p>
+                                            </div>
+                                                <div class="add">
+                                            <button class="btn my-cart-btn" (click)="addtocart(product)">Add to Cart</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row offer-prod" *ngIf="kitchenProd.length == 0">
+                            <div class="no-offer-prod col-md-12"> 
+                                    <h4>Sorry!! No Offer products are available in this catagory</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="otherProd" class="tab-pane fade">
+                        <div class="row offer-prod" *ngIf="otherProd.length > 0">
+                            <div class="col-md-3" *ngFor="let product of otherProd">
+                                <div class="col-spec">
+                                    <a [routerLink]="['spp', product._id]" class="offer-img">
+                                                <img src="../../assets/img/product_imgs/p{{product.prod_id}}.png" class="img-responsive" alt="">
+                                                <div class="offer" *ngIf="product.special_offer == true"><span>Offer</span></div>
+                                    </a>
+                                    <div class="product-details">
+                                        <div class="product-name">
+                                            <h6>{{product.name}} (500 g)</h6>
+                                        </div>
+                                        <div class="price">
+                                            <p><em class="item_price">{{(product.discount > 0 ? product.discount : product.price) | currency:'INR': true}}</em></p>
+                                        </div>
+                                        <div class="add">
+                                            <button class="btn my-cart-btn" (click)="addtocart(product)">Add to Cart</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row offer-prod" *ngIf="otherProd.length == 0">
+                            <div class="no-offer-prod col-md-12">  
+                                    <h4>Sorry!! No Offer products are available in this catagory</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="special-sale">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="season">
+                        <a href="">
+                            <img src="assets/img/product_imgs/co1.jpg" alt="season" />
+                            <div class="season-content text-center">
+                                <h6>New Collections</h6>
+                                <h3>Season<span>ing </span></h3>
+                                <p>There are many variations of passages of Lorem Ipsum available, but the majority </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="season">
+                            <a href="">
+                                <img src="assets/img/product_imgs/co2.jpg" alt="season" />
+                                <div class="season-content text-center">
+                                    <h6>New Collections</h6>
+                                    <h3>Season<span>ing </span></h3>
+                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority </p>
+                                </div>
+                            </a>
+                    </div>   
+                </div>
+                <div class="col-md-4">
+                    <div class="season season-split">
+                            <a href="">
+                                <img src="assets/img/product_imgs/co3.jpg" alt="season" />
+                            </a>
+                            <a href="">
+                                <img src="assets/img/product_imgs/co4.jpg" alt="season" />
+                            </a>
+                    </div>       
+                </div>
+            </div>
+        </div>
+        <special-products [products]="products"></special-products>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<inner-banner [title]="title" [breadcums]="breadcums"></inner-banner>
+
+<div class="spp-container">
+    <div class="container">
+        <div class="spp-content-top row">
+            <div class="spp-inner-left col-md-5">
+                <div class="spp-product-img text-center">
+                    <img src="../assets/img/product_imgs/p{{product.prod_id}}.png" alt="spp" />
+                </div>
+            </div>
+            <div class="spp-inner-right col-md-7">
+                <div class="spp-right-wrapper">
+                    <h3>{{product.name}}</h3>
+                    <div class="spp-price">
+                        <p class="reduced">
+                            <del *ngIf="product.discount > 0">{{product.price | currency:'INR': true}}</del>
+                            {{(product.discount > 0 ? product.discount : product.price) | currency:'INR': true}}</p>
+                    </div>
+                    <p class="product-detail"> {{product.summary}}</p>
+                    <!--<addto-cart [item]="product"></addto-cart>-->
+                    <div class="add">
+                            <button class="btn my-cart-btn" (click)="addtocart(product)">Add to Cart</button>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="recomended products">
+        <div class="container">
+            <special-products [products]="products"></special-products>
+        </div>
+    </div>
+    
+</div>
