@@ -1,0 +1,71 @@
+<inner-banner [title]="title" [breadcums]="breadcums"></inner-banner>
+<div class="register-container">
+    <div class="register-panel">
+        <div class="register-form">
+            <h3 class="text-center">Register</h3>
+            <form [formGroup]="form" (ngSubmit)="register()">
+                <div class="form-group form_grp">
+                    <i class="glyphicon glyphicon-user"></i>
+                    <input
+                    type="text" 
+                    name="username" 
+                    #username
+                    formControlName="username"
+                    [(ngModel)] = "registeruser.username" 
+                    id="username"
+                    class="" 
+                    required/>
+                </div>
+                <div class="alert alert-danger" *ngIf="form.controls.username.touched && !form.controls.username.valid">
+                        Please enter username
+                </div>
+                <div class="form-group form_grp">
+                    <i class="glyphicon glyphicon-envelope"></i>
+                    <input 
+                    type="email" 
+                    name="email" 
+                    id="email"
+                    formControlName="email"
+                    [(ngModel)] = "registeruser.email" 
+                    class="" required/>
+                </div>
+                <div class="alert alert-danger" *ngIf="form.controls.email.touched && !form.controls.email.valid">
+                        Please enter valid email
+                </div>
+                <div class="form-group form_grp">
+                    <i class="glyphicon glyphicon-lock"></i>
+                    <input
+                    type="password" 
+                    name="password" 
+                    id="password"
+                    formControlName="password"
+                    [(ngModel)] = "registeruser.password"
+                    class="" required/>
+                </div>
+                <div class="alert alert-danger" *ngIf="form.controls.password.touched && !form.controls.password.valid">
+                        Please your password
+                </div>
+                <div class="form-group form_grp">
+                    <i class="glyphicon glyphicon-lock"></i>
+                    <input
+                    type="password" 
+                    name="c_password" 
+                    id="c_password"
+                    formControlName="c_password"
+                    [(ngModel)] = "registeruser.c_password"
+                    class="" required/>
+                </div>
+                <div *ngIf="form.controls.c_password.touched && form.errors">
+                    <div  class="alert alert-danger" *ngIf="form.errors.passwordShouldMatch == true">confirm password should be match with password.</div>  
+                </div>
+                <div class="form-group form_grp noborder">
+                        <button type="submit" class="btn">Submit</button>
+                </div>
+            </form>
+            <div class="login">
+                <p class="pull-left"><a routerLink="/login">Already have account?</a></p>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>

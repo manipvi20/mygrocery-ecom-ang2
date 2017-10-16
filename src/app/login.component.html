@@ -1,0 +1,44 @@
+<inner-banner [title]="title" [breadcums]="breadcums"></inner-banner>
+<div class="login-container">
+    <div class="login-panel">
+        <div class="login-form">
+            <h3 class="text-center">Login</h3>
+            <form [formGroup]="form" (ngSubmit)="login()">
+                <div class="form-group form_grp">
+                    <i class="glyphicon glyphicon-envelope"></i>
+                    <input class="" 
+                    type="text" 
+                    name="email"
+                    #email
+                    formControlName="email"
+                    [(ngModel)] = "user.email" 
+                    id="email"
+                    class="" />
+                </div>
+                <div class="alert alert-danger" *ngIf="form.controls.email.touched && !form.controls.email.valid">
+                        Please enter valid email
+                </div>
+                <div class="form-group form_grp">
+                    <i class="glyphicon glyphicon-lock"></i>
+                    <input class="" 
+                    type="password" 
+                    #password
+                    formControlName="password"
+                    [(ngModel)] = "user.password" 
+                    name="password" 
+                    id="password"
+                    class="" 
+                    required/>
+                </div>
+                <div class="form-group form_grp noborder">
+                    <button type="submit" class="btn">Login</button>
+                </div>
+            </form>
+            <div class="forg-pass">
+                    <p class="pull-left"><a href="#">Forgot password?</a></p>
+                    <p class="pull-right"><a routerLink="/register">Register</a></p>
+                    <div class="clearfix"></div>
+                </div>
+        </div>
+    </div>
+</div>

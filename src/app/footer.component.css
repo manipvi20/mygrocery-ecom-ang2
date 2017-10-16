@@ -1,0 +1,16 @@
+footer {
+    background: #353535;
+    padding: 5em 0 0;
+}
+footer h3 {
+    color: #fff;
+}
+footer p, footer a  {
+    color: #ABABAB;
+}
+.copy-right {
+    margin-top: 55px;
+}
+.footer-grid ul {
+    padding: 0;
+}

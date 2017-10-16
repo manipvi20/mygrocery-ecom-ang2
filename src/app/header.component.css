@@ -1,0 +1,73 @@
+/* Header css*/
+
+header {
+    text-align: center;
+}
+.logo h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3em;
+    color: #000;
+    display: inline-block;
+    position: relative;
+}
+.logo h1 a {
+    text-decoration: none;
+    color: #000;
+}
+.logo h1 span {
+    font-size: 12px;
+    display: block;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-family: 'Noto Sans', sans-serif;
+    padding-top: 4px;
+}
+.head-user ul {
+    margin-top: 25px;
+}
+.head-user ul li {
+    display: inline;
+    padding: 0 25px;
+}
+.head-user ul li a {
+    color: #555;
+}
+.head-user ul li a:hover {
+    color: #000;
+}
+
+
+/* nav bar css */
+.head-navigation {
+    margin-top: 30px;
+}
+.navbar-default {
+    border: none;
+    background: #fff;
+}
+ul.navbar-nav li {
+    padding: 0 20px;
+}
+.navbar-nav .active, .navbar-nav li:not(.navbar-right):hover {
+    background: #000;
+    color: #fff;
+}
+.navbar-default .navbar-nav .active a, .navbar-nav li:not(.navbar-right):hover > a {
+    color: #fff;
+    background: transparent;
+}
+.dropdown-menu li a {
+    padding: 15px 0;
+}
+.navbar-nav>li>.dropdown-menu {
+    width: 250px;
+}
+.glyphicon-shopping-cart {
+    font-size: 1.7em;
+}
+
+
+.logout {
+    text-decoration: underline;
+    cursor: pointer;
+}

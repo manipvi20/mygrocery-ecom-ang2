@@ -1,0 +1,25 @@
+<div class="today-special text-center">
+    <h1 class="spec-off_h">{{title != null ? title : 'Today Special'}}</h1>
+    <div class="row offer-prod">
+        <div class="col-md-3" *ngFor="let product of products">
+            <div class="col-spec">
+                <a [routerLink]="['spp', product._id]" class="offer-img">
+                        <img src="../../assets/img/product_imgs/p{{product.prod_id}}.png" class="img-responsive" alt="">
+                        <div class="offer"><span>Offer</span></div>
+                </a>
+                <div class="product-details">
+                    <div class="product-name">
+                            <h6>{{product.name}} (500 g)</h6>
+                    </div>
+                    <div class="price">
+                        <p><em class="item_price">{{(product.discount > 0 ? product.discount : product.price) | currency:'INR': true}}</em></p>
+                    </div>
+                    <!--<addto-cart [item]="product"></addto-cart> -->
+                    <div class="add">
+                    <button class="btn my-cart-btn" (click)="addtocart(product)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+.spp-container {
+    margin: 5em auto;
+}
+.spp-right h3 {
+    color: #000;
+    font-size: 1.8em;
+    font-weight: 700;
+}
+.spec-off_h {
+    padding-bottom: 30px;
+}
+.spp-product-img {
+    border: 1px solid #ccc;
+    margin: 2em;
+    padding: 2em;
+}
+p.product-detail {
+    color: #999;
+    font-size: 1em;
+    line-height: 2em;
+    margin: 1em 0;
+    border-bottom: 1px solid #ccc;
+    padding: 1em 0;
+}
+.reduced {
+    color: green
+}
+.reduced del {
+    color: red;
+}

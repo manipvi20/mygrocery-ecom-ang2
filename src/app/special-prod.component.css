@@ -1,0 +1,46 @@
+.spec-off_h {
+    padding-bottom: 30px;
+}
+.special-offers {
+    margin-top: 90px;
+}
+.nav-tabs > li > a, .nav.nav-tabs {
+    display: inline-block;
+    border: none;
+    background: none;
+    color: #555;
+    padding: 0 35px;
+    margin-bottom: 10px;
+}
+.nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #000;
+}
+.col-spec:hover > .product-details >.add > .btn {
+    background: #000;
+    color: #fff;
+}
+.row.offer-prod .col-spec {
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+}
+.product-name h6 {
+    font-size: 1.3em;
+}
+.offer {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    background: #000;
+    padding: 0px 15px; 
+}
+.offer span {
+    color: #fff;
+}
+.offer-img img {
+    margin: 0 auto;
+    width: 55%;
+}
+.today-special {
+    margin-bottom: 100px;
+}
