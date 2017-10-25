@@ -30,13 +30,26 @@ export class HeaderComponent implements OnInit {
     this.data.availCart.subscribe(c => {
       if(c != '') {
         this.cartqty += 1;
+        c['qty'] = 1;
+        for(let i = 0; i < this.cart.length; i++) {
+          if(this.cart[i]['prod_id'] == c['prod_id'] ) {
+            c['qty'] += 1;
+          }
+        }
         this.cart.push(c);
-        localStorage.setItem('cart', JSON.stringify(this.cart));
+        var filteredCartItems = this.removeDuplicatesItems(this.cart, 'prod_id');
+        localStorage.setItem('cart', JSON.stringify(filteredCartItems));
       }
     }
     );
-
   }
+
+  removeDuplicatesItems(cartItems, prop) {
+    return cartItems.filter((obj, pos, arr) => {
+        return arr.map(newCart => newCart[prop]).indexOf(obj[prop]) === pos;
+    });
+  }
+
   logout() {
     this.loggedIn = !this.loggedIn;
     this.data.changeUser(this.loggedIn);

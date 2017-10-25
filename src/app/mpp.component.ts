@@ -4,8 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'mpp',
-  templateUrl: './mpp.component.html',
-  styleUrls: ['./mpp.component.css']
+  templateUrl: './mpp.component.html'
 })
 export class MppComponent implements OnInit {
     title:string = 'MPP';
