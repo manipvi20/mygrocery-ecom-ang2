@@ -13,7 +13,9 @@ export class SpecialComponent implements OnInit {
     @Input('products') products:any[];
     items = [];
     constructor(
-        private data: DataService) {  }
+        private data: DataService
+    ) {  }
+    
     ngOnInit() {
         this.data.availCart.subscribe(c => this.items = c);
     }

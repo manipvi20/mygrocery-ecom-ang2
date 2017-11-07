@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
-import {Http} from "@angular/http";
+import { UserService } from './app.services';
 import { RegisterUser } from './interfaces';
+
 import { DataService } from "./share-service";
+
 import { CustomValidators } from './validators';
 
 @Component({
@@ -16,10 +18,10 @@ export class RegisterComponent implements OnInit {
     breadcums: string = 'register';
     registeruser = new RegisterUser();
     form:FormGroup;
-    loggedIn = false;
+    loggedIn;
 
     constructor(
-      private http : Http,
+      private userserive : UserService,
       private _formBuilder: FormBuilder,
       private _router: Router,
       private _activatedRoute: ActivatedRoute,
@@ -43,19 +45,17 @@ export class RegisterComponent implements OnInit {
       if(this.form.valid == true) {
         var newObj = this.registeruser;
         delete newObj['c_password'];
-
-        this.http.post('user', newObj)
-            .subscribe(
-                res=> {
-                  this.loggedIn = !this.loggedIn;
-                  localStorage.removeItem('user');
-                  localStorage.setItem('user', this.registeruser.email);
-                  this.data.changeUser(this.loggedIn);
-                  this._router.navigate(['']);            
-                },
-                err=> {console.log (err + "Error");},
-                ()=>{}
-            )
+        this.userserive.postUser(newObj).subscribe(
+          res=> {
+            this.loggedIn = !this.loggedIn;
+            localStorage.removeItem('user');
+            localStorage.setItem('user', this.registeruser.email);
+            this.data.changeUser(this.loggedIn);
+            this._router.navigate(['']);            
+          },
+          err=> {console.log (err + "Error");},
+          ()=>{}
+        )
       }
     
     }

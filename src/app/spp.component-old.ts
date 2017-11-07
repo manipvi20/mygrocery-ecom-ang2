@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductSerivces } from "./app.services";
 import { ActivatedRoute } from "@angular/router";
 import { DataService } from "./share-service";
+
+
 import {Http} from "@angular/http";
 
 @Component({
@@ -16,6 +19,7 @@ export class SppComponent implements OnInit {
     items = [];    
 
     constructor(
+      private productServices: ProductSerivces,
       private activatedRoute: ActivatedRoute,
       private data: DataService,
       private http: Http) {  }
@@ -24,29 +28,27 @@ export class SppComponent implements OnInit {
         var id = params['id'];
         if(!id)
             return
-        
-        this.http.get('product/'+ id)
-        .subscribe(
-            (prod: any) => {
-                this.product = prod.json();
-            },
-            err=> {},
-            ()=>{console.log(this.product)}
+
+        this.productServices.getProduct(id).subscribe(
+            prod => {
+                this.product = prod
+                },
+            err => { if(err) console.log(err + " Something went wrong!!")},
+            () =>{  }
         )
       });
       this.getTodayOfferPrd('todayOfferProducts');
     }
 
     getTodayOfferPrd(offer_type) {
-
-      this.http.get(offer_type)
-        .subscribe(
-            (prod: any) => {
-                this.products = prod.json();
-            },
-            err => { if(err) console.log(err + " Something went wrong!!")},
-            () =>{ }
-        )
+      
+      this.productServices.getOfferProd('', offer_type).subscribe(
+        products => {
+          this.products = products
+         },
+        err => { if(err) console.log(err + " Something went wrong!!")},
+        () =>{ }
+      )
     }
     
     addtocart($event) {

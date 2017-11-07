@@ -37,6 +37,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <i *ngIf="isLoading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i>
                             <div class="row offer-prod" *ngIf="snacksProd.length == 0">
                                 <div class="no-offer-prod col-md-12">
                                         <h4>Sorry!! No Offer products are available in this catagory</h4>

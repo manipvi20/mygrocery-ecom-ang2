@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule}    from "@angular/forms";
-import { HttpModule } from '@angular/http';
+//import { HttpModule } from '@angular/http';
+import {HttpModule, Http, XHRBackend, RequestOptions} from '@angular/http';
 import { RouterModule } from "@angular/router";
 import { AppComponent } from './app.component';
 import { WrapperComponent } from './wrapper.component';
@@ -16,6 +17,9 @@ import { SppComponent } from './spp.component';
 import { MppComponent } from './mpp.component';
 import { PageNotFoundComponent } from './pagenotfound.component';
 
+import { ModalComponent } from './modal.component';
+import {ModalModule} from "ng2-modal";
+
 //routing Module 
 import { appRouterModule } from './app.routing';
 
@@ -24,6 +28,8 @@ import { ProductSerivces } from "./app.services";
 import { UserService } from './app.services';
 import { DataService } from './share-service';
 
+import { httpFactory } from './interceptorsFactory';
+
 @NgModule({
   imports: [
       BrowserModule,
@@ -31,7 +37,8 @@ import { DataService } from './share-service';
       RouterModule,
       FormsModule,
       ReactiveFormsModule,
-      appRouterModule
+      appRouterModule,
+      ModalModule
     ],
   declarations: [
       AppComponent,
@@ -46,8 +53,18 @@ import { DataService } from './share-service';
       SppComponent,
       MppComponent,
       SpecialComponent,
+      ModalComponent
     ],
-  providers: [ProductSerivces, UserService, DataService],
+  providers: [
+    ProductSerivces, 
+    UserService, 
+    DataService,
+      {
+            provide: Http,
+            useFactory: httpFactory,
+            deps: [XHRBackend, RequestOptions]
+      }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

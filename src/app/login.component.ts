@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
-import { UserService } from './app.services';
 import { Login } from './interfaces';
+import {Http} from "@angular/http";
 
 import { DataService } from "./share-service";
 
@@ -26,11 +26,11 @@ export class LoginComponent implements OnInit {
   email:string;
 
   constructor(
-    private userserive : UserService,
     private _formBuilder: FormBuilder,
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
-    private data: DataService
+    private data: DataService,
+    private http: Http
   ) { 
     this.form = _formBuilder.group({
       email: ['', CustomValidators.emailValidation],
@@ -44,30 +44,29 @@ export class LoginComponent implements OnInit {
 
 
   login() {
-    
-    this.userserive.getUser(this.user.email).subscribe(
-      res => { 
-        this.userDetails = res 
-      },
-      err => { console.log(err + "couldnot process")
-      },
-     () => {
-      let userDetails = this.userDetails;
-      if(userDetails == null)
-        return alert("username doesn't exit");
+    this.http.get('user/'+ this.user.email)
+            .subscribe(
+                (user: any) => {
+                    this.userDetails = user.json();
+                },
+                err => { if(err) console.log(err + " Something went wrong!!")},
+                () => {
+                let userDetails = this.userDetails;
+                if(userDetails == null)
+                  return alert("username doesn't exit");
 
-      if(userDetails.email == this.user.email && userDetails.password == this.user.password) {
-        this.loggedIn = !this.loggedIn;
-        let localStorageVal = localStorage.getItem('user');
-        localStorageVal !== null ? localStorage.removeItem('user') : '';
-        localStorage.setItem('user', userDetails.email);
-        this.data.changeUser(this.loggedIn);
-        this._router.navigate(['']);
-      }
-      else {
-        alert("username or password is invalid");
-      }
-    }
-    );
+                if(userDetails.email == this.user.email && userDetails.password == this.user.password) {
+                  this.loggedIn = !this.loggedIn;
+                  let localStorageVal = localStorage.getItem('user');
+                  localStorageVal !== null ? localStorage.removeItem('user') : '';
+                  localStorage.setItem('user', userDetails.email);
+                  this.data.changeUser(this.loggedIn);
+                  this._router.navigate(['']);
+                }
+                else {
+                  alert("username or password is invalid");
+                }
+              }
+          )
   }
 }
