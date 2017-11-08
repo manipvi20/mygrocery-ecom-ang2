@@ -26,3 +26,7 @@ body {
     color: #fff;
     background: #000;
 }
+.prod_row {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0px;
+}

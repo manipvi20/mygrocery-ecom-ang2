@@ -11,6 +11,8 @@ export class HeaderComponent implements OnInit {
   loggedIn:boolean;
   cart=[];
   cartqty = 0;
+  splicedCart = [];
+  grandTotal: number = 0;
   constructor(private data: DataService) {  }
 
   ngOnInit() {
@@ -25,7 +27,11 @@ export class HeaderComponent implements OnInit {
     var availableCart = localStorage.getItem('cart');
     if(availableCart !== null) {
       this.cart = JSON.parse(availableCart);
-      this.cartqty = this.cart.length;
+      //this.cartqty = this.cart.length;
+      var tempCart = this.cart;
+      for(let key of tempCart) {
+        this.cartqty =  this.cartqty + key.qty
+      }
     }
     this.data.availCart.subscribe(c => {
       if(c != '') {
@@ -39,6 +45,13 @@ export class HeaderComponent implements OnInit {
         this.cart.push(c);
         var filteredCartItems = this.removeDuplicatesItems(this.cart, 'prod_id');
         localStorage.setItem('cart', JSON.stringify(filteredCartItems));
+        this.splicedCart = filteredCartItems;
+        for(let key of filteredCartItems) {
+            var prodPrice = key.discount ? key.discount : key.price;
+            var prodTotal = key.qty * prodPrice;
+            this.grandTotal += prodTotal;
+        }
+        console.log(this.grandTotal)
       }
     }
     );
@@ -46,7 +59,11 @@ export class HeaderComponent implements OnInit {
 
   removeDuplicatesItems(cartItems, prop) {
     return cartItems.filter((obj, pos, arr) => {
-        return arr.map(newCart => newCart[prop]).indexOf(obj[prop]) === pos;
+      console.log(pos);
+        return arr.map(
+          function(newCart){
+            return newCart[prop]
+          }).indexOf(obj[prop]) === pos;
     });
   }
 

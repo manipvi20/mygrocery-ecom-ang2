@@ -1,5 +1,4 @@
 <header>
-
     <div class="container">
         <div class="logo">
                 <h1>
@@ -49,7 +48,8 @@
                             <li><a href="#">Contact us</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="navbar-right"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span><span>{{cartqty}}</span></a></li>
+                            <li class="navbar-right"><a href="#"><span class="glyphicon glyphicon-shopping-cart" (click)="myModal.open()"></span><span>{{cartqty}}</span></a></li>
+                            <modal-wrapper #myModal [cart]="splicedCart" [grandTotal]="grandTotal"></modal-wrapper>
                         </ul>
                     </div>
                 </div>
