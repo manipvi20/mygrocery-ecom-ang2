@@ -18,6 +18,11 @@ export class InterceptedHttp extends Http {
         url = this.baseUrl(url);
         return super.post(url, body, this.getRequestOptionArgs(options));
     }
+    
+    put(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
+        url = this.baseUrl(url);
+        return super.put(url, body, this.getRequestOptionArgs(options));
+    }
 
 
     private getRequestOptionArgs(options?: RequestOptionsArgs) : RequestOptionsArgs {

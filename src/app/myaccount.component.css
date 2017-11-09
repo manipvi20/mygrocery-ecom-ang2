@@ -1,0 +1,8 @@
+.my-account__wrapper {
+        margin: 100px auto;
+}
+.billing_address {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 35px;
+    margin-bottom: 35px;
+}

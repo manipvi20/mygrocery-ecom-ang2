@@ -1,0 +1,45 @@
+<inner-banner [title]="title" [breadcums]="title"></inner-banner>
+<div class="my-account__wrapper">
+    <div class="container">
+        <div class="row billing_address">
+            <div class="col-md-6">
+                <h1>Billing Address</h1>
+                <i *ngIf="isLoading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i>
+                <address *ngIf="user.billing_address">
+                    {{user.billing_address.full_name}} <br>
+                    {{user.billing_address.address1}}<br>
+                    {{user.billing_address.address2}} <br>
+                    {{user.billing_address.city}} <br>
+                    Pincode - {{user.billing_address.pin}}<br>
+                    {{user.billing_address.state}} <br>
+                </address>
+            </div>
+            <div class="col-md-6">
+                <h1>Default Shipping Address</h1>
+                <i *ngIf="isLoading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i>
+                <address *ngIf="defaultShipAddress">
+                    {{defaultShipAddress.full_name}} <br>
+                    {{defaultShipAddress.address1}}<br>
+                    {{defaultShipAddress.address2}} <br>
+                    {{defaultShipAddress.city}} - {{defaultShipAddress.pin}} <br>
+                    {{defaultShipAddress.state}} <br>
+                </address>
+            </div>
+        </div>
+        <div class="row other_address">
+            <h1>Other Address</h1>
+            <i *ngIf="isLoading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i>
+            <div class="col-md-6" *ngFor="let otherAdd of otherAddress">
+                <address *ngIf="defaultShipAddress">
+                    {{otherAdd.full_name}} <br>
+                    {{otherAdd.address1}}<br>
+                    {{otherAdd.address2}} <br>
+                    {{otherAdd.city}} - {{otherAdd.pin}} <br>
+                    {{otherAdd.state}} <br>
+                </address>
+                <button class="btn" (click)="makeDefalut(otherAdd)">Make Defalut</button>
+                <button class="btn">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>

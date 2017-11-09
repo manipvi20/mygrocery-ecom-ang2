@@ -1,9 +1,9 @@
 <div class="today-special text-center">
-    <h1 class="spec-off_h">{{title != null ? title : 'Today Special'}}</h1>
+    <h1 class="spec-off_h">{{title.catagory ? title.catagory : title}}</h1>
     <div class="row offer-prod">
         <div class="col-md-3" *ngFor="let product of products">
             <div class="col-spec">
-                <a [routerLink]="['spp', product._id]" class="offer-img">
+                <a [routerLink]="['/spp', product._id]" class="offer-img">
                         <img src="../../assets/img/product_imgs/p{{product.prod_id}}.png" class="img-responsive" alt="">
                         <div class="offer"><span>Offer</span></div>
                 </a>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { cartitem } from './cart';
+import { ActivatedRoute } from '@angular/router';
 
 import { DataService } from "./share-service";
 
@@ -13,11 +14,14 @@ export class SpecialComponent implements OnInit {
     @Input('products') products:any[];
     items = [];
     constructor(
-        private data: DataService
+        private data: DataService,
+        private activatedRoute : ActivatedRoute
     ) {  }
     
     ngOnInit() {
         this.data.availCart.subscribe(c => this.items = c);
+        if(!this.title)
+            this.activatedRoute.params.subscribe(p=> this.title = p )
     }
     
     addtocart($event) {

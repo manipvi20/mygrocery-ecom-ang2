@@ -1,0 +1,19 @@
+.about_us_warpper {
+    margin: 100px auto;
+}
+.abt-rows {
+    margin-bottom: 50px;
+}
+.content {
+    font-size: 1em;
+    color: #999;
+    line-height: 2em;
+    padding: 0.5em 0;
+}
+ul.our_skills li {
+    color: #7c7c7c;
+    font-size: 1em;
+    text-decoration: none;
+    margin: 0.8em 0;
+    display: block;
+}

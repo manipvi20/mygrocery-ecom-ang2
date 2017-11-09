@@ -16,6 +16,8 @@ import { SpecialComponent } from './special-prod.component';
 import { SppComponent } from './spp.component';
 import { MppComponent } from './mpp.component';
 import { PageNotFoundComponent } from './pagenotfound.component';
+import { AboutUsComponent } from './aboutus.component';
+import { MyAccountComponent } from './myaccount.component';
 
 import { ModalComponent } from './modal.component';
 import {ModalModule} from "ng2-modal";
@@ -53,7 +55,9 @@ import { httpFactory } from './interceptorsFactory';
       SppComponent,
       MppComponent,
       SpecialComponent,
-      ModalComponent
+      ModalComponent,
+      AboutUsComponent,
+      MyAccountComponent
     ],
   providers: [
     ProductSerivces, 
