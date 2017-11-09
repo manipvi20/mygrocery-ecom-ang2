@@ -47,11 +47,10 @@ export class HeaderComponent implements OnInit {
         localStorage.setItem('cart', JSON.stringify(filteredCartItems));
         this.splicedCart = filteredCartItems;
         for(let key of filteredCartItems) {
-            var prodPrice = key.discount ? key.discount : key.price;
+            var prodPrice = key.discount > 0 ? key.discount : key.price;
             var prodTotal = key.qty * prodPrice;
             this.grandTotal += prodTotal;
         }
-        console.log(this.grandTotal)
       }
     }
     );

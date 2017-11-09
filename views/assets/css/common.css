@@ -16,6 +16,9 @@ body {
 .noborder {
     border: none !important;
 }
+.clickable {
+    cursor: pointer;
+}
 .btn {
     background: #fff;
     color: #000;
@@ -26,6 +29,23 @@ body {
     color: #fff;
     background: #000;
 }
+.glyphicon-refresh-animate {
+    animation:  spin .7s infinite linear;
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+
 .prod_row {
     border-bottom: 1px solid #ccc;
     padding: 10px 0px;

@@ -13,7 +13,7 @@
                 <li *ngIf="loggedIn == false"><a routerLink="login">Login</a></li>
                 <li class="logout" *ngIf="loggedIn == true" (click)="logout()">Logout</li>
                 <li *ngIf="loggedIn == false"><a routerLink="register">Register</a></li>
-                <li *ngIf="loggedIn == true"><a routerLink="myaccount">My Account</a></li>
+                <li *ngIf="loggedIn == true"><a routerLink="account">My Account</a></li>
                 <li><a routerLink="about-us">Order History</a></li>
                 <li><a routerLink="shipping">Shipping</a></li>
             </ul>
@@ -37,18 +37,18 @@
                             </li>
                             <li><a [routerLink]="['mpp', 'kitchen']">Kitchen</a></li>
                             <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">House Hold<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Cleanings Accessiories</a></li>
-                                        <li><a href="#">Cook wears</a></li>
-                                        <li><a href="#">Kitchen & Dinning</a></li>
-                                    </ul>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">House Hold<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a [routerLink]="['mpp', 'cleaner']">Cleanings Accessiories</a></li>
+                                    <li><a href="#">Cook wears</a></li>
+                                    <li><a href="#">Kitchen & Dinning</a></li>
+                                </ul>
                             </li>
-                            <li><a href="#">About Us</a></li>
+                            <li><a routerLink="about-us">About Us</a></li>
                             <li><a href="#">Contact us</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="navbar-right"><a href="#"><span class="glyphicon glyphicon-shopping-cart" (click)="myModal.open()"></span><span>{{cartqty}}</span></a></li>
+                            <li class="navbar-right"><span class="glyphicon glyphicon-shopping-cart clickable" (click)="myModal.open()"></span><span>{{cartqty}}</span></li>
                             <modal-wrapper #myModal [cart]="splicedCart" [grandTotal]="grandTotal"></modal-wrapper>
                         </ul>
                     </div>

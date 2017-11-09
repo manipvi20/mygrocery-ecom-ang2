@@ -97,4 +97,29 @@ router.post('/user', function(req, res, next) {
     }
 });
 
+
+//Update info
+router.put('/modifyUser/:email', function(req, res, next){
+    var info = req.body;
+    var updatedInfo = {};
+    updatedInfo = info;
+
+    if(!updatedInfo) {
+        res.status(400);
+        res.json({
+            "error": "Couldn't update data / Invalid data"
+        })
+    }
+    else {
+        console.log(updatedInfo);
+        db.info.update({email: req.params.email} ,updatedInfo, {}, function(err, test){
+            if(err){
+                res.send(err);
+            }
+            console.log(test);
+            res.json(test);
+        });
+    }
+});
+
 module.exports = router;
