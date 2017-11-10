@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {Http, URLSearchParams} from "@angular/http";
 
 @Component({
@@ -7,7 +8,7 @@ import {Http, URLSearchParams} from "@angular/http";
   styleUrls: ['./myaccount.component.css']
 })
 export class MyAccountComponent implements OnInit {
-  constructor(private http: Http) {  }
+  constructor(private http: Http, private router: Router) {  }
   user: any = {};
   defaultShipAddress:any = {};
   otherAddress :any[]= [];
@@ -16,7 +17,10 @@ export class MyAccountComponent implements OnInit {
   isLoading = true;
   ngOnInit() {
       this.userId = localStorage.getItem('user');
-      this.userAddress();
+	  if(!this.userId)
+		this.router.navigate(['/login']);
+	  else
+        this.userAddress();
   }
   userAddress() {
       this.http.get('user/'+ this.userId)
