@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Http} from "@angular/http";
+import {Http, URLSearchParams} from "@angular/http";
 
 @Component({
   selector: 'my-account',
@@ -31,7 +31,7 @@ export class MyAccountComponent implements OnInit {
                         if(key.defaultAddress === true)
                             this.defaultShipAddress = key;
                         else 
-                            this.otherAddress.push(key);                        
+                            this.otherAddress.push(key);           
                     }
                 },
                 err => { if(err) console.log(err + " Something went wrong!!")},
@@ -41,8 +41,6 @@ export class MyAccountComponent implements OnInit {
   }
   makeDefalut(address) {
     var addressId = address.address_id;
-    console.log(addressId);
-    console.log(this.user);
     for (let key of this.user.shipping_address) {
         if(key.address_id == addressId) {
             key.defaultAddress = true;
@@ -51,13 +49,19 @@ export class MyAccountComponent implements OnInit {
              key.defaultAddress = false;
         }
     }
-    console.log(this.user);
 
-    this.http.put('modifyUser/'+ this.userId, JSON.stringify(this.user))
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('address_id', addressId);
+
+    this.http.put(
+        'modifyUser/'+ this.user._id, 
+        JSON.stringify(this.user), 
+        {'search': params})
             .subscribe(res=> {
-                user => this.user = user
+                this.otherAddress = [];
+                this.userAddress();
             },
             err=>{},
-            ()=>{console.log("error")});
+            ()=>{console.log("")});
   }
 }

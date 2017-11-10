@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import { ConnectionBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers} from "@angular/http";
+import { ConnectionBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers, URLSearchParams} from "@angular/http";
 import {Observable} from "rxjs/Rx";
 
 
@@ -21,6 +21,7 @@ export class InterceptedHttp extends Http {
     
     put(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
         url = this.baseUrl(url);
+
         return super.put(url, body, this.getRequestOptionArgs(options));
     }
 

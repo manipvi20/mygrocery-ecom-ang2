@@ -3,7 +3,7 @@ var router = express.Router();
 var mongojs = require('mongojs');
 var async = require('async');
 //var db = mongojs('mongodb://127.0.0.1:27017/admin', ['info', 'posts']);
-var db = mongojs('mongodb://mani:mani@ds147080.mlab.com:47080/mean2app', ['info', 'product-details']);
+var db = mongojs('mongodb://mani:mani@ds147080.mlab.com:47080/mean2app', ['info', 'product-details','tasks']);
 
 router.get('/user', function(req, res, next){
     db.info.find(function(err, info){
@@ -99,10 +99,20 @@ router.post('/user', function(req, res, next) {
 
 
 //Update info
-router.put('/modifyUser/:email', function(req, res, next){
+router.put('/modifyUser/:id', function(req, res, next){
     var info = req.body;
-    var updatedInfo = {};
-    updatedInfo = info;
+    var shippAddressId = req.query.address_id
+    var updatedInfo = info;
+    delete updatedInfo._id;
+    shipAddress = updatedInfo.shipping_address;
+    for(var i=0; i < shipAddress.length; i++) {
+        if(shipAddress[i].address_id == shippAddressId) {
+            shipAddress[i].defaultAddress = true;
+        }
+        else {
+            shipAddress[i].defaultAddress = false;   
+        }            
+    }
 
     if(!updatedInfo) {
         res.status(400);
@@ -112,12 +122,13 @@ router.put('/modifyUser/:email', function(req, res, next){
     }
     else {
         console.log(updatedInfo);
-        db.info.update({email: req.params.email} ,updatedInfo, {}, function(err, test){
+        db.info.update({_id: mongojs.ObjectId(req.params.id)},updatedInfo, {}, function(err, info){
             if(err){
+                console.log(err);
                 res.send(err);
             }
-            console.log(test);
-            res.json(test);
+            console.log(info);
+            res.json(info);
         });
     }
 });

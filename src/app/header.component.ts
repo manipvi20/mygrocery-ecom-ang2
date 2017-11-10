@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from "@angular/router";
 import { DataService } from "./share-service";
 
 @Component({
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit {
   cartqty = 0;
   splicedCart = [];
   grandTotal: number = 0;
-  constructor(private data: DataService) {  }
+  constructor(private data: DataService, private router: Router) {  }
 
   ngOnInit() {
     let localStorageVal = localStorage.getItem('user');
@@ -70,5 +71,6 @@ export class HeaderComponent implements OnInit {
     this.loggedIn = !this.loggedIn;
     this.data.changeUser(this.loggedIn);
     localStorage.removeItem('user');
+    this.router.navigate(['login'])
   }
 }

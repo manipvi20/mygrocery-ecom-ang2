@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
                   localStorageVal !== null ? localStorage.removeItem('user') : '';
                   localStorage.setItem('user', userDetails.email);
                   this.data.changeUser(this.loggedIn);
-                  this._router.navigate(['']);
+                  this._router.navigate(['account']);
                 }
                 else {
                   alert("username or password is invalid");
