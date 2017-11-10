@@ -47,11 +47,17 @@ export class HeaderComponent implements OnInit {
         var filteredCartItems = this.removeDuplicatesItems(this.cart, 'prod_id');
         localStorage.setItem('cart', JSON.stringify(filteredCartItems));
         this.splicedCart = filteredCartItems;
+		var gt = 0;
         for(let key of filteredCartItems) {
+			console.log(key.qty + "qty");
+			console.log(key.discount + "discount");
+			console.log(key.price + "price");
             var prodPrice = key.discount > 0 ? key.discount : key.price;
             var prodTotal = key.qty * prodPrice;
-            this.grandTotal += prodTotal;
+            gt += prodTotal;
         }
+		console.log(gt);
+		this.grandTotal = gt;
       }
     }
     );
