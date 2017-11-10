@@ -16,11 +16,11 @@ export class MyAccountComponent implements OnInit {
   userId: any;
   isLoading = true;
   ngOnInit() {
-      this.userId = localStorage.getItem('user');
-	  if(!this.userId)
+	this.userId = localStorage.getItem('user');
+	if(!this.userId)
 		this.router.navigate(['/login']);
-	  else
-        this.userAddress();
+	else
+		this.userAddress();
   }
   userAddress() {
       this.http.get('user/'+ this.userId)
